@@ -1,5 +1,93 @@
 import java.util.*;
 
+
+public class Main {
+    public static void main(String[] args) {
+        ticTacToe game = new ticTacToe();
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Press 1 for single player & Press 2 for multiplayer");
+        int playerMode = sc.nextInt();
+
+        if(playerMode == 1){
+
+
+            System.out.println("PLease enter Player 1 name who'll use 'X' ");
+            String playerOne = sc.next();
+
+            humanPlayer p1 = new humanPlayer(playerOne, 'X');
+            AIPlayer p2 = new AIPlayer("AI", '0');
+
+            Player cp;
+            cp = p1;
+
+            while (true){
+                System.out.println(cp.name + "'s turn");
+                cp.makeAMove();
+                ticTacToe.dispBoard();
+
+                if (ticTacToe.checkColWin() || ticTacToe.checkRowWin() || ticTacToe.checkDiagonalWin()) {
+                    System.out.println(cp.name + " has won this game");
+                    break;
+                } else if (!ticTacToe.boardEmpty()) {
+                    System.out.println("Game Draw");
+                    break;
+                } else {
+                    if (cp == p1) {
+                        cp = p2;
+                    } else {
+                        cp = p1;
+                    }
+                }
+            }
+
+
+
+        } else if (playerMode == 2) {
+
+
+            System.out.println("PLease enter Player 1 name who'll use 'X' ");
+            String playerOne = sc.next();
+            System.out.println("PLease enter Player 2 name who'll use '0' ");
+            String playerTwo = sc.next();
+
+            humanPlayer p1 = new humanPlayer(playerOne, 'X');
+            humanPlayer p2 = new humanPlayer(playerTwo, '0');
+
+            Player cp;
+            cp = p1;
+
+            while (true){
+                System.out.println(cp.name + "'s turn");
+                cp.makeAMove();
+                ticTacToe.dispBoard();
+
+                if (ticTacToe.checkColWin() || ticTacToe.checkRowWin() || ticTacToe.checkDiagonalWin()) {
+                    System.out.println(cp.name + " has won this game");
+                    break;
+                } else if (!ticTacToe.boardEmpty()) {
+                    System.out.println("Game Draw");
+                    break;
+                } else {
+                    if (cp == p1) {
+                        cp = p2;
+                    } else {
+                        cp = p1;
+                    }
+                }
+            }
+
+        }else {
+            System.out.println("wrong input, Run the code again");
+        }
+    }
+}
+
+
+
+
+
+
 class ticTacToe{
     static char [][] board;
 
@@ -132,86 +220,3 @@ class AIPlayer extends Player{
     }
 }
 
-
-
-public class Main {
-    public static void main(String[] args) {
-        ticTacToe game = new ticTacToe();
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("Press 1 for single player & Press 2 for multiplayer");
-        int playerMode = sc.nextInt();
-
-        if(playerMode == 1){
-
-
-            System.out.println("PLease enter Player 1 name who'll use 'X' ");
-            String playerOne = sc.next();
-
-            humanPlayer p1 = new humanPlayer(playerOne, 'X');
-            AIPlayer p2 = new AIPlayer("AI", '0');
-
-            Player cp;
-            cp = p1;
-
-            while (true){
-                System.out.println(cp.name + "'s turn");
-                cp.makeAMove();
-                ticTacToe.dispBoard();
-
-                if (ticTacToe.checkColWin() || ticTacToe.checkRowWin() || ticTacToe.checkDiagonalWin()) {
-                    System.out.println(cp.name + " has won this game");
-                    break;
-                } else if (!ticTacToe.boardEmpty()) {
-                    System.out.println("Game Draw");
-                    break;
-                } else {
-                    if (cp == p1) {
-                        cp = p2;
-                    } else {
-                        cp = p1;
-                    }
-                }
-            }
-
-
-
-        } else if (playerMode == 2) {
-
-
-            System.out.println("PLease enter Player 1 name who'll use 'X' ");
-            String playerOne = sc.next();
-            System.out.println("PLease enter Player 2 name who'll use '0' ");
-            String playerTwo = sc.next();
-
-            humanPlayer p1 = new humanPlayer(playerOne, 'X');
-            humanPlayer p2 = new humanPlayer(playerTwo, '0');
-
-            Player cp;
-            cp = p1;
-
-            while (true){
-                System.out.println(cp.name + "'s turn");
-                cp.makeAMove();
-                ticTacToe.dispBoard();
-
-                if (ticTacToe.checkColWin() || ticTacToe.checkRowWin() || ticTacToe.checkDiagonalWin()) {
-                    System.out.println(cp.name + " has won this game");
-                    break;
-                } else if (!ticTacToe.boardEmpty()) {
-                    System.out.println("Game Draw");
-                    break;
-                } else {
-                    if (cp == p1) {
-                        cp = p2;
-                    } else {
-                        cp = p1;
-                    }
-                }
-            }
-
-        }else {
-            System.out.println("wrong input, Run the code again");
-        }
-    }
-}
